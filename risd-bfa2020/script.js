@@ -5,14 +5,14 @@ var Engine = Matter.Engine,
   Mouse = Matter.Mouse,
   MouseConstraint = Matter.MouseConstraint;
 
-var rectangle, ellip, triang, rectangle1, hexagon;
+var rectangle, ellip, ellip2, ellip3, triang, rectangle1, hexagon;
 
 var engine;
 var world;
 var boxes = [];
 var mConstraint;
 var ground, wall1, wall2, wall3;
-var union, lido;
+var HelveticaNeue, lido;
 var ctx;
 var logo;
 var scrollPos = 0;
@@ -20,20 +20,23 @@ var gScale;
 var grid;
 var bool=2;
 var imgx;
-var iframe;
-var link;
+// var iframe;
+// var link;
+var photo;
+var maskImage;
 
 
 function setup() {
-  union = loadFont("fonts/union.woff");
+  photo = loadImage("asset/firework6.gif");
+  photo2 = loadImage("asset/firework3.gif");
+  maskImage = createGraphics(200, 200);
+  maskImage2 = createGraphics(250, 250);
+
+  HelveticaNeue = loadFont("fonts/HelveticaNeueLTStd-Roman.otf");
   lido = loadFont("fonts/LidoSTF.otf");
   logo = loadImage("asset/logo.svg");
-  grid=loadImage("asset/cartesian.jpg");
+  // grid=loadImage("asset/cartesian.jpg");
   frameRate(60);
-
-
-
-  // console.log(frameRate);
   var canvas = createCanvas(windowWidth, windowHeight);
   ctx = canvas.drawingContext;
 
@@ -91,8 +94,21 @@ function setup() {
   Body.rotate(hexagon, 90);
   World.add(world, hexagon);
 
+  ellip2 = Bodies.polygon(width * 0.45, -300, 6, 160, options);
+  Body.scale(ellip2, 0.5, 1);
+  Body.rotate(ellip2, 90);
+  World.add(world, ellip2);
 
 
+  ellip3 = Bodies.polygon(width * 0.45, -20, 6, 160, options);
+  Body.scale(ellip3, 0.5, 1);
+  Body.rotate(ellip3, 90);
+  World.add(world, ellip3);
+
+  circle1 = Bodies.circle(width * 0.25, -100, 100, options)
+  Body.scale(circle1, 0.3, 1);
+  Body.rotate(circle1, 90);
+  World.add(world, circle1);
 
   var canvasmouse = Mouse.create(canvas.elt);
   canvasmouse.element.removeEventListener("mousewheel", canvasmouse.mousewheel);
@@ -108,8 +124,8 @@ function setup() {
 
   imgx=width/2;
 
-  iframe = createElement('iframe');
-  iframe.attribute('src', 'https://player.vimeo.com/video/379784240?title=0&byline=0&portrait=0');
+  // iframe = createElement('iframe');
+  // iframe.attribute('src', 'https://player.vimeo.com/video/379784240?title=0&byline=0&portrait=0');
 
 }
 
@@ -121,7 +137,7 @@ function draw() {
   if (frameCount == 40) {
     World.add(world, wall1);
   }
-  background(0);
+  background(150);
   Engine.update(engine);
 
 
@@ -140,10 +156,12 @@ function draw() {
 
     drawRect();
     drawEllipse();
-    drawTriangle();
+    drawEllipse2();
+    drawEllipse3();
+    // drawTriangle();
     drawRect1();
-    // drawHex();
-
+    drawHex();
+    // drawCircle();
 
   if (mConstraint.body) {
     var pos = mConstraint.body.position;
@@ -151,7 +169,6 @@ function draw() {
     var m = mConstraint.mouse.position;
       World.add(world, wall1);
   }
-
 }
 
 function track(type, x, y, tracking) {
@@ -188,7 +205,7 @@ function drawRect() {
   fill(255, 102, 94);
   rect(0, 0, 500, 140);
   fill(0);
-  textFont(union);
+  textFont(HelveticaNeue);
   textSize(40);
   track("A CELEBRATION OF ", -178, -3, -1.5);
   textFont(lido);
@@ -210,8 +227,8 @@ function drawEllipse() {
   ellipse(0, 0, 500, 140);
   fill(0);
   textSize(40);
-  textFont(union);
-  track("bfa2020.risd.gd", -125, -6, -1);
+  textFont(HelveticaNeue);
+  track("SPREAD THE WORD!", -180, -6, -1);
   pop();
 }
 
@@ -235,9 +252,8 @@ function drawTriangle() {
   translate(pos.x, pos.y);
   rotate(angle + PI * 3 + PI / 2);
   textFont(lido);
-  trackTime("8 P.M. \u2013", -55, -10, -2);
-
-  trackTime("9 P.M.", -40, 30, -2);
+  // trackTime("We", -55, -10, -2);
+  // trackTime("Did it!", -40, 30, -2);
 
   pop();
 
@@ -260,11 +276,11 @@ function drawRect1() {
   // textFont(lido);
   // textSize(38);
   // track("Senior Show 2020 Catalogue", -200, -3, -1.5);
-  // textFont(union);
+  // textFont(HelveticaNeue);
   // textSize(40);
   // track("DOWNLOAD ", -110, 34, -1.5);
 
-  textFont(union);
+  textFont(HelveticaNeue);
   textSize(40);
   track("END OF YEAR EVENT", -190, -3, -1.5);
   textFont(lido);
@@ -325,9 +341,6 @@ function clickable() {
 //   link.addClass('hover');
 // }
 
-// function download(){
-//   window.open("https://intersections-2020.github.io/catalog/intersections_catalog.pdf", _self);
-// }
 
 function drawHex() {
   var pos = hexagon.position;
@@ -340,8 +353,9 @@ function drawHex() {
   rectMode(CENTER);
   //textAlign(CENTER);
   noStroke();
-  fill(0, 120, 191);
-  polygon(0, 0, 160, 6);
+  // fill(0, 120, 191);
+  fill(0, 169, 92);
+  polygon(0, 0, 140, 6);
   pop();
   push();
 
@@ -349,11 +363,68 @@ function drawHex() {
   translate(pos.x, pos.y);
   rotate(angle + PI / 2 * 3);
   textSize(40);
-  textFont(union);
+  textFont(HelveticaNeue);
 
-  track("END OF", -70, -25, -1.5);
-  track("YEAR", -60, 15, -1.5);
-  track("EVENT", -65, 55, -1.5);
+  track("CHECK", -70, -25, -1.5);
+  track("US", -35, 15, -1.5);
+  track("OUT!", -45, 55, -1.5);
+  pop();
+
+}
+
+function drawEllipse2() {
+  var pos = ellip2.position;
+  var angle = ellip2.angle;
+  push();
+  translate(pos.x, pos.y);
+  rotate(angle);
+  rectMode(CENTER);
+  textAlign(LEFT, CENTER);
+  noStroke();
+   // fill(255, 51, 51);
+
+  // ellipse(0, 0, 200, 200);
+  maskImage.fill(255);
+  maskImage.ellipse(100, 100, 200, 200);
+  photo.mask(maskImage);
+  image(photo, 0, 0, 200, 200);
+  pop();
+
+  // fill(0);
+  // textSize(40);
+  // textFont(HelveticaNeue);
+  // track("WOOT", -60, 20, -1);
+  // track("WOOT", -60, -20, -1);
+
+}
+
+function drawEllipse3() {
+  var pos = ellip3.position;
+  var angle = ellip3.angle;
+  push();
+  translate(pos.x, pos.y);
+  rotate(angle);
+  rectMode(CENTER);
+  textAlign(LEFT, CENTER);
+  noStroke();
+  maskImage2.fill(255);
+  maskImage2.ellipse(125, 125, 250, 250);
+  photo2.mask(maskImage2);
+  image(photo2, 0, 0, 250, 250);
+  pop();
+}
+function drawCircle() {
+  var pos = circle1.position;
+  var angle = circle1.angle;
+  push();
+  translate(pos.x, pos.y);
+  rotate(angle);
+  rectMode(CENTER);
+  textAlign(CENTER);
+  noStroke();
+  fill(255, 51, 51);
+  ellipse(0, 0, 50, 50);
+  fill(0);
   pop();
 
 }
@@ -421,6 +492,14 @@ function sizeDown(){
   Body.scale(ellip, 1, 0.28);
   World.add(world, ellip);
 
+  ellip2 = Bodies.circle(width * 0.25, -200, 250, options)
+  Body.scale(ellip2, 1, 0.28);
+  World.add(world, ellip2);
+
+  ellip3 = Bodies.circle(width * 0.25, -200, 250, options)
+  Body.scale(ellip3, 1, 0.28);
+  World.add(world, ellip3);
+
   triang = Bodies.polygon(width * 0.3, -200, 3, 160, options);
   Body.scale(triang, 0.9, 1);
   Body.rotate(triang, 90);
@@ -447,6 +526,14 @@ function sizeDown(){
   Body.rotate(hexagon, 90);
   World.add(world, hexagon);
 
+
+
+
+  circle1 = Bodies.circle(width * 0.25, -100, 100, options)
+  Body.scale(circle1, 0.5, 1);
+  Body.rotate(circle1, 90);
+  World.add(world, circle1);
+
   var canvasmouse = Mouse.create(canvas.elt);
   canvasmouse.element.removeEventListener("mousewheel", canvasmouse.mousewheel);
   canvasmouse.element.removeEventListener("DOMMouseScroll", canvasmouse.mousewheel);
@@ -458,10 +545,10 @@ function sizeDown(){
   World.add(world, mConstraint);
   world.gravity.y = 0.8;
 
-  iframe.remove();
-  iframe = createElement('iframe');
-  iframe.attribute('src', 'https://player.vimeo.com/video/379784240?title=0&byline=0&portrait=0');
-  iframe.addClass('active');
+  // iframe.remove();
+  // iframe = createElement('iframe');
+  // iframe.attribute('src', 'https://player.vimeo.com/video/379784240?title=0&byline=0&portrait=0');
+  // iframe.addClass('active');
 
 }
 
@@ -477,7 +564,7 @@ function sizeUp(){
   wall3 = Bodies.rectangle(width + 50, height / 2, 98, height, options);
   World.add(world, wall3);
 
-  iframe.removeClass('active');
+  // iframe.removeClass('active');
 }
 
 function keyPressed() {
@@ -494,9 +581,13 @@ function jump() {
 
   Body.applyForce( rectangle, {x: rectangle.position.x, y: rectangle.position.y}, {x: 0, y: -4});
   Body.applyForce( ellip, {x: ellip.position.x, y: ellip.position.y}, {x: 0, y: -4});
+  Body.applyForce( ellip2, {x: ellip2.position.x, y: ellip2.position.y}, {x: 0, y: -1});
+  Body.applyForce( ellip3, {x: ellip3.position.x, y: ellip3.position.y}, {x: 0, y: -1});
   Body.applyForce( triang, {x: triang.position.x, y: triang.position.y}, {x: 0, y: -1});
   Body.applyForce( rectangle1, {x: rectangle1.position.x, y: rectangle1.position.y}, {x: 0, y: -6});
   Body.applyForce( hexagon, {x: hexagon.position.x, y: hexagon.position.y}, {x: 0, y: -1});
+  Body.applyForce( circle1, {x: circle1.position.x, y: circle1.position.y}, {x: 0, y: -2});
+
 }
 
 /*  =========================================================================
@@ -530,16 +621,34 @@ function hoverName(){
     function(){
       var thisPosition = $(this).position();
       var right = 20;
-
-      if(($(this).is('li[data-icon]:last'))||($(this).is('li[data-icon]:nth-last-child(3)')) ) {
-          var top = thisPosition.top - 250 ;
-            console.log('this');
+      var bottom = $(window).height() - event.pageY;
+     
+      if(($(this).is('li[data-icon]:last'))||($(this).is('li[data-icon]:nth-last-child(3)')) || (bottom < 500 ) ) {
+        if ($(this).hasClass('square')){
+          var top = thisPosition.top - 260;
+        }  if ($(this).hasClass('portrait')){
+          var top = thisPosition.top - 330;
+        } if ($(this).hasClass('landscape')){
+          var top = thisPosition.top - 200;
+        } if ($(this).hasClass('wide')){
+          var top = thisPosition.top - 140;
+        }
       } else {
+        if ($(this).hasClass('square')){
           var top = thisPosition.top + 45;
+        }  if ($(this).hasClass('portrait')){
+          var top = thisPosition.top + 45;
+        } if ($(this).hasClass('landscape')){
+          var top = thisPosition.top + 45;
+        } if ($(this).hasClass('wide')){
+          var top = thisPosition.top + 45;
+        }
       }
+  
       $('#thumb').css({"top": top + "px", "right": right + "px"});
       $('#thumb').addClass('visible');
       $('body').find('#thumb').append("<img src='./img/" + $(this).attr('data-icon') + "'>"); 
+      console.log($(this).attr('data-icon'));
     }, function(){
       $('body').find('#thumb').find('img').remove();
       $('#thumb').removeClass('visible');
@@ -554,7 +663,7 @@ function hoverName(){
   $( document ).ready(function(){
     
     if($('header').hasClass('active')) {
-      $('iframe').addClass('active'); 
+      // $('iframe').addClass('active'); 
      }
       hoverName();
   });

@@ -4,13 +4,13 @@
 
 body {
     margin: 0;
-    background: black;
     transition: all .6s;
+    -webkit-font-smoothing: antialiased;
 }
 
 @font-face {
-    font-family: "Union";
-    src: url("fonts/union.woff") format("woff");
+    font-family: "HelveticaNeue";
+    src: url("fonts/HelveticaNeueLTStd-Roman.otf") format("woff");
 }
 
 @font-face {
@@ -35,8 +35,8 @@ canvas {
 --------------------------------------------------------------*/
 
 h1 {
-    font-family: "Union";
-    font-size: 2rem;
+    font-family: "HelveticaNeue";
+    font-size: 3rem;
     line-height: 2rem;
     font-weight: normal;
     margin-block-start: 0;
@@ -45,7 +45,7 @@ h1 {
 
 
 h3 {
-    font-family: "Union";
+    font-family: "HelveticaNeue";
     font-size: 1.2rem;
     line-height: 1.4rem;
     font-weight: normal;
@@ -149,7 +149,7 @@ ul {
 
 ul li {
     font-size: 3vw;
-    font-family: "Union";
+    font-family: "HelveticaNeue";
     text-decoration: none;
     list-style-type: none;
     line-height: 1em;
@@ -162,7 +162,7 @@ li a {
     target-name: new;
     target-new: tab;
     text-decoration: none;
-    color: black;
+    color: inherit;
 }
 
 li a:hover {
@@ -181,13 +181,13 @@ h3 a:hover {
 
 
 #names {
-    color: black;
+    color: white;
     width: 30vw;
     transform: translateX(34vw);
     transition: transform 0.25s;
     position: fixed;
     z-index: 10;
-    background: white;
+    background: black;
     right: 0;
     top: 0;
     bottom: 0;
@@ -222,8 +222,26 @@ h3 a:hover {
 }
 
 #thumb img {
-    width: 100%;
+    max-width:250px;
+    max-height: 400px;
 }
+
+#thumb img.wide {
+    height:100px;
+}
+
+#thumb img.square {
+    height:250px;
+}
+
+#thumb img.landscape {
+    height:130px;
+}
+
+#thumb img.portrait {
+    height:400px;
+}
+
 
 /*--------------------------------------------------------------
    Video
@@ -256,6 +274,9 @@ iframe.active {
     iframe {
         width: 500px;
         height:281px;
+    }
+    h1 {
+        font-size:2.5rem;
     }
 }
 
