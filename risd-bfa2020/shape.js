@@ -21,7 +21,7 @@ function circles(x, y, w, h) {
         translate(pos.x, pos.y);
         rectMode(CENTER);
         noStroke();
-        circle(this.w, this.h, 50);
+        circle(this.w-50, this.h, 50);
         pop();
     }
 }
