@@ -49,15 +49,14 @@ function setup() {
     restitution: 0.5
   };
 
-  rectangle = Bodies.rectangle(width * 0.25, -200, 550, 170, options);
+  rectangle = Bodies.rectangle(width * 0.4, -200, 550, 170, options);
   World.add(world, rectangle);
 
   ellip = Bodies.circle(width * 0.5, -200, 300, options)
   Body.scale(ellip, 1, 0.3);
   World.add(world, ellip);
 
-  ellip2 = Bodies.circle(width * 0.4, 100, 215, options)
-  Body.scale(ellip2, 1, 0.38);
+  ellip2 = Bodies.circle(width * 0.4, 100, 100, options)
   World.add(world, ellip2);
 
   hexagon = Bodies.polygon(width * 0.7, -300, 6, 150, options);
@@ -142,7 +141,7 @@ function sizeDown(){
   boxes.splice(0, boxes.length);
   bool=1;
 
-  width=width*0.65;
+  width=width*0.65 + 50;
   var canvas = createCanvas(windowWidth, windowHeight);
   ctx = canvas.drawingContext;
 
@@ -155,7 +154,7 @@ function sizeDown(){
   ground = Bodies.rectangle(width / 2, height + 50, width + 200, 98, options);
   wall1 = Bodies.rectangle(width / 2, -50, width + 200, 98, options);
   wall2 = Bodies.rectangle(-50, height / 2, 98, height, options);
-  wall3 = Bodies.rectangle(width*0.65, height / 2, 98, height, options);
+  wall3 = Bodies.rectangle(width*0.65 + 50, height / 2, 98, height, options);
 
   World.add(world, ground);
   World.add(world, wall2);

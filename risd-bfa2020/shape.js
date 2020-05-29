@@ -11,7 +11,7 @@ function circles(x, y, w, h) {
         restitution: 0.5
       };
 
-    this.body = Bodies.rectangle(x, y, w, h, options);
+    this.body = Bodies.circle(x, y, w/2, options);
     this.w = w;
     this.h = h;
     World.add(world, this.body);
@@ -21,7 +21,7 @@ function circles(x, y, w, h) {
         translate(pos.x, pos.y);
         rectMode(CENTER);
         noStroke();
-        circle(this.w-50, this.h, 50);
+        circle(this.w-50, this.h-50, 50);
         pop();
     }
 }
