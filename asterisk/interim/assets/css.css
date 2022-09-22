@@ -1,0 +1,462 @@
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Basic Type
+# Element Defaults
+  ## Nav
+  ## Structure
+  ## Elements
+# Page Agonistic Overrides
+  ## Structure
+  ## Elements
+# Page Specific Overrides
+  ## Structure
+  ## Elements
+# Responsive Layout
+--------------------------------------------------------------*/
+
+:root {
+    /* color: primary */
+    --black: #000000;
+    --white: #ffffff;
+    --mint: rgb(129,214,195);
+    --red: rgb(255,115,85);
+    --grey: rgb(191,190,171);
+    --grey-light: rgba(191,190,171, 0.15);
+    /* color: secondary */    
+    --brown: rgb(129,97,65);
+    --red-dark: rgb(191,86,57);
+    --green-dark: rgb(97,159,131);
+    --red-vivid: rgb(255,52,28);
+    --green-vivid: rgb(65,180,149);
+    --green-light: rgb(166,255,223);
+
+    --indent: 2.5rem;
+    --pad: 2rem;
+    --pad-small: 1rem;
+    --pad-large: 4rem;
+
+    --size-base: 18px;
+    --size-title: 2.1rem;
+    --size-quote: 1.8rem;
+    --size-heading: 1.2rem;
+    --max-width: 1200px;
+    --width:  80%;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+
+    /*font-variation-settings: "SOFT" var(--SOFT);*/
+}
+
+html {
+    max-width: 100%;
+    min-height: 100%;
+    -webkit-text-size-adjust: none;
+    font-size: var(--size-base);
+}
+
+
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Basic Type
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+*/
+
+body {
+    font-family:'Noe Text';
+    font-variant-ligatures: normal;
+    font-weight: 450;
+}
+
+
+a, 
+a:visited {
+   
+}
+a:hover,
+a:active {
+
+}
+strong, b {
+    font-weight: bold;
+}
+
+
+ul, li, ol {
+    list-style: none;
+}
+
+h1, h2, h3, h4 {
+    font-weight: normal;
+    font-weight: 700;
+    font-family: 'Atlas Grotesk';
+}
+
+h1 i, h1 em,
+h2 i, h2 em,
+h3 i, h3 em,
+h4 i, h4 em {
+    font-family: 'Atlas Grotesk';
+    font-weight: 700;
+    font-style: italic;
+}
+
+h1 {
+    font-family: 'Atlas Grotesk';
+    font-weight: 200;
+    color: white;
+    font-size: var(--size-title);
+}
+h2 {
+    font-size: var(--size-heading);
+    font-weight: bold;
+    /*margin-bottom: var(--pad-large);*/
+}
+h3 {
+
+}
+h4 {
+
+}
+
+a{
+    color: var(--red);
+    text-decoration: none;
+    border-bottom: 1px solid;
+}
+
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Element Defaults
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+*/
+.cols{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--pad);
+   /* flex-direction: row-reverse;*/
+}
+.col{
+   grid-column: 1;
+}
+header{
+    background:  var(--red);
+    position: fixed;
+    top:  0;
+    width: 100vw;
+/*    height: 25rem;*/
+    padding-bottom: var(--pad-large);
+}
+
+.flex{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+}
+
+.flex h2{
+    flex:  1;
+}
+.flex ul{
+    flex: 5;
+}
+
+main{
+    position: absolute;
+    z-index: 50;
+    top: 528px;
+}
+
+
+
+section{
+    padding: var(--pad-large);
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+
+img {
+
+}
+figure {
+
+}
+
+figcaption{
+
+}
+
+p, li{
+    line-height: 1.4;
+    margin-bottom: var(--pad-small);
+}
+
+
+
+footer{
+    font-weight: 500;
+    font-family: 'Atlas Grotesk';
+}
+
+
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Element Overides
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+*/
+
+
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Landing Page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+*/
+
+#logo {
+    text-align: right;
+    padding: var(--pad);
+}
+#logo svg {
+    width: 250px;
+}
+
+header h1{
+    grid-column: 2 / span 2;
+}
+header .form{
+     grid-column: 4 / -1;
+}
+
+.form{
+    margin-top: var(--pad-small);
+    padding: 0 var(--pad-large);
+}
+.caption{
+    margin-left: 10px;
+    font-weight: 400;
+    font-family: 'Atlas Grotesk';
+}
+
+
+.intro{
+    background: var(--grey);
+}
+/*.intro strong{
+    display: block;
+}*/
+
+.intro h2{
+    margin-top: -0.3em;
+}
+
+.intro .cols, .toc .cols{
+    grid-column: 2 / -1;
+}
+
+.toc{
+    background: var(--mint);
+    min-height: 50vh;
+    top: 27vh;
+    font-size: var(--size-heading);
+    font-family: 'Atlas Grotesk';
+    font-weight: 400;
+}
+/*.toc .cols{
+    max-width: var(--max-width);
+    margin: auto;
+}*/
+.toc a{
+    color: var(--black);
+    font-weight: bold;
+}
+.toc p{
+    text-align: center;
+}
+.outro{
+    background: var(--white);
+    top: 50vh;
+    min-height: 60vh;
+    padding-top: var(--pad-large);
+}
+
+.outro p{
+    grid-column: 2 / span 3;
+    color: var(--red);
+    font-size: var(--size-quote);
+    font-family: "Noe Standard";
+    text-indent: -0.15em;
+    margin-bottom: var(--pad-large);
+}
+
+footer{
+    grid-column: 2 / span 2;
+}
+
+
+
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+FORM INPUT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+*/
+
+.mc-field-group{
+   display: flex;
+   flex-wrap: nowrap;
+   justify-content: flex-start;
+}
+
+input.email {
+  border: 0;
+  border-radius: 25px;
+  border-bottom: 3px solid var(--red);
+  width: 80%;
+  height: auto;
+  padding: 0.5rem 1rem;
+  font-family: "Noe Text";
+  font-size: 28px;
+  text-align: left;
+  margin-bottom: 1rem;
+  color: var(--red);
+}
+input.email:focus {
+  outline: none;
+}
+
+input.button {
+/*  visibility: hidden;*/
+  background: transparent;
+  display: block;
+  border: none;
+  color: var(--black);
+  font-family: sans-serif;
+  margin-left: var(--pad-small);
+  padding: 0;
+  font-size: 45px;
+  width: 50px;
+  height: 52px;
+  line-height: 1.0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+input.button:focus {
+  outline: none;
+}
+input.button:hover {
+  background: transparent;
+  color: var(--white);
+}
+
+input.button.visible {
+  visibility: visible;
+}
+
+label {
+  display: none;
+}
+
+#mce-responses{
+    font-style: italic;
+    height: 20px;
+    margin-left: 10px;
+}
+#post-thankyou {
+  display: none;
+}
+
+#mc_embed_signup input.mce_inline_error {
+  border-color: var(--red);
+}
+
+#mc_embed_signup div.mce_inline_error {
+  background: none;
+  color: var(--red);
+}
+
+
+/*
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Responsive Layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+*/
+
+@media screen and (max-width: 1400px){
+    header h1{
+        grid-column: 1 / span 3;
+    }
+    .cols{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (max-width: 1100px){
+    :root{
+        --pad-large: 2rem;
+    }
+    header h1{
+        grid-column-end: span 4;
+    }
+    header .form{
+        grid-column: 1 / span 5;
+        padding:  var(--pad-large) 0 0;
+    }
+
+    .cols{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .outro p, .outro footer{
+        grid-column: 1 / -1;
+    }
+    main{
+        top: 575px;
+    }
+}
+@media screen and (max-width: 800px){
+    :root{
+/*        --pad-large: 1.25rem;*/
+        --pad: 0.8rem;
+        --size-quote: 1.5rem;
+        --size-heading: 1.0rem;
+    }
+    section{
+        display: block;
+        padding-right: var(--pad);
+        padding-left: var(--pad);
+    }
+    header{
+        position: static;
+    }
+    main{
+        position: static;
+    }
+    header h1{
+        margin-top: 70px;
+    }
+    .outro{
+        height: auto;
+    }
+    .outro p{
+        padding: 70px 0;
+    }
+    .intro .cols{
+        display: block;
+    }
+
+    h2{
+        margin-bottom: var(--pad);
+    }
+    #logo svg{
+        width: 180px;
+    }
+}
